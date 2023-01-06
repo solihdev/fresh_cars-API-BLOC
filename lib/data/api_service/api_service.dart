@@ -4,7 +4,7 @@ import '../model/my_response/my_response.dart';
 import 'api_client.dart';
 
 class ApiService extends ApiClient {
-  Future<MyResponse> getAllAlbums() async {
+  Future<MyResponse> getAllCars() async {
     MyResponse myResponse = MyResponse(error: "");
     try {
       Response response = await dio.get("${dio.options.baseUrl}/companies");
