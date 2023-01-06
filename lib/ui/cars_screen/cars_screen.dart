@@ -11,7 +11,13 @@ class CarsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cars Screen"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          "Cars Screen",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: BlocConsumer<CarsCubit, CarsState>(
         builder: (context, state) {
@@ -24,13 +30,29 @@ class CarsScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is LoadCarsInSuccess) {
-            return ListView(
-              children: List.generate(
-                  state.cars.length,
-                  (index) => ListTile(
-                        title: Text(state.cars[index].carModel),
-                      )),
-            );
+            return GridView.builder(
+                itemCount: state.cars.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  var cars = state.cars[index];
+                  return Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Center(
+                      child: Image.network(
+                        cars.logo,
+                        width: 100,
+                        height: 100,
+                      ),
+                    ),
+                  );
+                });
           }
           return const SizedBox();
         },
