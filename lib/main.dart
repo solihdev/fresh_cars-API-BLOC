@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_cubit.dart';
 import 'package:fresh_cars/data/api_service/api_service.dart';
-
 import 'data/repositories/cars_repo.dart';
+import 'ui/cars_screen/cars_screen.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: const CarsScreen(),
     );
   }
 }
