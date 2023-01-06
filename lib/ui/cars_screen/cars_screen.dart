@@ -60,6 +60,9 @@ class CarsScreen extends StatelessWidget {
           if (state is LoadCarsInSuccess) {
             MyUtils.getMyToast(message: state.cars.length.toString());
           }
+          if (state is LoadCarsInFailure) {
+            MyUtils.getMyToast(message: state.errorText);
+          }
         },
       ),
     );
