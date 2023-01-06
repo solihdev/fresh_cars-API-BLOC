@@ -2,11 +2,9 @@ import 'package:fresh_cars/data/api_service/api_service.dart';
 import 'package:fresh_cars/data/model/my_response/my_response.dart';
 
 class CarsRepo {
-  CarsRepo({required ApiService apiService}) {
-    _apiService = apiService;
-  }
+  CarsRepo({required this.apiService});
 
-  late ApiService _apiService;
+  final ApiService apiService;
 
-  Future<MyResponse> getCarsInfo() =>_apiService.getAllCars();
+  Future<MyResponse> getCarsInfo() => apiService.getAllCars();
 }

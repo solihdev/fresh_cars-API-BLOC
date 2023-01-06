@@ -4,7 +4,7 @@ import 'package:fresh_cars/data/model/my_response/my_response.dart';
 import 'package:fresh_cars/data/repositories/cars_repo.dart';
 
 class CarsCubit extends Cubit<CarsState> {
-  CarsCubit(this.carsRepo) : super(InitialState());
+  CarsCubit({required this.carsRepo}) : super(InitialCarsState());
 
   final CarsRepo carsRepo;
 

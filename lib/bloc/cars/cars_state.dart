@@ -2,7 +2,7 @@ import 'package:fresh_cars/data/model/cars_model.dart';
 
 abstract class CarsState {}
 
-class InitialState extends CarsState {}
+class InitialCarsState extends CarsState {}
 
 class LoadCarsInProgress extends CarsState {}
 
