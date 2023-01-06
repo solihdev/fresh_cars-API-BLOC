@@ -4,8 +4,8 @@ import 'package:fresh_cars/bloc/cars/cars_cubit.dart';
 import 'package:fresh_cars/bloc/cars/cars_state.dart';
 import 'package:fresh_cars/utils/my_utils.dart';
 
-class CarsScreen extends StatelessWidget {
-  const CarsScreen({Key? key}) : super(key: key);
+class CarsScreenWithConsumer extends StatelessWidget {
+  const CarsScreenWithConsumer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

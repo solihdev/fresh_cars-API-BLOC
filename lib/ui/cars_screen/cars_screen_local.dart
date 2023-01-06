@@ -16,7 +16,13 @@ class CarsScreenWithBlockProvider extends StatelessWidget {
       )..fetchAllCars(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Cars Screen With Local Provider"),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: const Text(
+            "Cars Screen With Local Provider",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: BlocBuilder<CarsCubit, CarsState>(
           builder: (context, state) {

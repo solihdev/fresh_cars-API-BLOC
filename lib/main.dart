@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_cubit.dart';
 import 'package:fresh_cars/data/api_service/api_service.dart';
-import 'package:fresh_cars/ui/cars_screen/cars_screen_local.dart';
+import 'package:fresh_cars/ui/main_screen/main_screen.dart';
 import 'data/repositories/cars_repo.dart';
 
 void main() {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const CarsScreenWithBlockProvider(),
+      home: const MainScreen(),
     );
   }
 }
