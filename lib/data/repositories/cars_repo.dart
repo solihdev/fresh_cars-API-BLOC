@@ -7,4 +7,7 @@ class CarsRepo {
   final ApiService apiService;
 
   Future<MyResponse> getCarsInfo() => apiService.getAllCars();
+
+  Future<MyResponse> getSingleAlbumById(int id) =>
+      apiService.getSingleCarById(id);
 }

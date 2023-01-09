@@ -19,4 +19,16 @@ class CarsCubit extends Cubit<CarsState> {
       emit(LoadCarsInFailure(errorText: myResponse.error));
     }
   }
+
+  fetchSingleCar(int id) async {
+    emit(LoadCarInProgress());
+
+    MyResponse myResponse = await carsRepo.getSingleAlbumById(id);
+
+    if (myResponse.error.isEmpty) {
+      emit(LoadCarInSuccess(car: myResponse.data));
+    } else {
+      emit(LoadCarInFailure(errorText: myResponse.error));
+    }
+  }
 }

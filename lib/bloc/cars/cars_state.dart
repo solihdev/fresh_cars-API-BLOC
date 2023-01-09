@@ -4,6 +4,8 @@ abstract class CarsState {}
 
 class InitialCarsState extends CarsState {}
 
+// ------- Fetch All Cars State ------
+
 class LoadCarsInProgress extends CarsState {}
 
 class LoadCarsInSuccess extends CarsState {
@@ -14,6 +16,22 @@ class LoadCarsInSuccess extends CarsState {
 
 class LoadCarsInFailure extends CarsState {
   LoadCarsInFailure({required this.errorText});
+
+  final String errorText;
+}
+
+// ------ Fetch single Car State ------
+
+class LoadCarInProgress extends CarsState {}
+
+class LoadCarInSuccess extends CarsState {
+  LoadCarInSuccess({required this.car});
+
+  final CarsModel car;
+}
+
+class LoadCarInFailure extends CarsState {
+  LoadCarInFailure({required this.errorText});
 
   final String errorText;
 }

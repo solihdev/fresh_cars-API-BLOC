@@ -4,6 +4,22 @@ import '../model/my_response/my_response.dart';
 import 'api_client.dart';
 
 class ApiService extends ApiClient {
+
+  Future<MyResponse> getSingleCarById(int id) async {
+    MyResponse myResponse = MyResponse(error: "");
+    try {
+      Response response = await dio.get("${dio.options.baseUrl}/companies/$id");
+      if (response.statusCode == 200) {
+        myResponse.data = CarsModel.fromJson(response.data);
+      }
+    } catch (err) {
+      myResponse.error = err.toString();
+    }
+
+    return myResponse;
+  }
+
+
   Future<MyResponse> getAllCars() async {
     MyResponse myResponse = MyResponse(error: "");
     try {
