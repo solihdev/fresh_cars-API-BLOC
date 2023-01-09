@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fresh_cars/bloc/cars/cars_cubit.dart';
+import 'package:fresh_cars/bloc/cars/cars_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_state.dart';
-import 'package:fresh_cars/data/api_service/api_service.dart';
 import 'package:fresh_cars/data/repositories/cars_repo.dart';
-
+import '../../bloc/cars/cars_event.dart';
 import 'single_car_screen.dart';
 
 class CarsScreenWithBlockProvider extends StatelessWidget {
@@ -13,9 +12,9 @@ class CarsScreenWithBlockProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CarsCubit(
+      create: (context) => CarsBloc(
         carsRepo: context.read<CarsRepo>()
-      )..fetchAllCars(),
+      )..add(FetchAllCars()),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -26,7 +25,7 @@ class CarsScreenWithBlockProvider extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        body: BlocBuilder<CarsCubit, CarsState>(
+        body: BlocBuilder<CarsBloc, CarsState>(
           builder: (context, state) {
             if (state is InitialCarsState) {
               return const Center(

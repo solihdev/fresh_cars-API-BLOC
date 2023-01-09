@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fresh_cars/bloc/cars/cars_cubit.dart';
+import 'package:fresh_cars/bloc/cars/cars_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_state.dart';
 import 'package:fresh_cars/ui/cars_screen/single_car_screen.dart';
 import 'package:fresh_cars/utils/my_utils.dart';
@@ -20,7 +20,7 @@ class CarsScreenWithConsumer extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: BlocConsumer<CarsCubit, CarsState>(
+      body: BlocConsumer<CarsBloc, CarsState>(
         builder: (context, state) {
           if (state is InitialCarsState) {
             return const Center(
