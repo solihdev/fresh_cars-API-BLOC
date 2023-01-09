@@ -26,11 +26,13 @@ class CarsScreenWithConsumer extends StatelessWidget {
             return const Center(
               child: Text("Hali data yo"),
             );
-          } else if (state is LoadCarsInProgress) {
+          }
+          else if (state is LoadCarsInProgress) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is LoadCarsInSuccess) {
+          }
+          else if (state is LoadCarsInSuccess) {
             return GridView.builder(
                 itemCount: state.cars.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -65,13 +67,16 @@ class CarsScreenWithConsumer extends StatelessWidget {
           }
           return const SizedBox();
         },
+        buildWhen: (oldState,newState){
+          return newState is LoadCarsInSuccess;
+        },
         listener: (context, state) {
-          if (state is LoadCarsInSuccess) {
-            MyUtils.getMyToast(message: state.cars.length.toString());
+          if (state is LoadCarsInProgress) {
+            MyUtils.getMyToast(message: "Loading in progress...");
           }
-          if (state is LoadCarsInFailure) {
-            MyUtils.getMyToast(message: state.errorText);
-          }
+        },
+        listenWhen: (oldState,newState){
+          return newState is LoadCarsInProgress;
         },
       ),
     );
