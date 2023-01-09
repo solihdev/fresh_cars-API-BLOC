@@ -14,7 +14,7 @@ class SingleCarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<CarsCubit>(
       create: (context) =>
-          CarsCubit(carsRepo: CarsRepo(apiService: ApiService()))
+          CarsCubit(carsRepo: context.read<CarsRepo>())
             ..fetchSingleCar(id),
       child: Scaffold(
         appBar: AppBar(

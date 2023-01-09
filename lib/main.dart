@@ -6,13 +6,17 @@ import 'package:fresh_cars/ui/main_screen/main_screen.dart';
 import 'data/repositories/cars_repo.dart';
 
 void main() {
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(
-      create: (context) =>
-          CarsCubit(carsRepo: CarsRepo(apiService: ApiService()))
-            ..fetchAllCars(),
-    ),
-  ], child: const MyApp()));
+  runApp(MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+            create: (context) => CarsRepo(apiService: ApiService()))
+      ],
+      child: MultiBlocProvider(providers: [
+        BlocProvider(
+          create: (context) =>
+              CarsCubit(carsRepo: context.read<CarsRepo>())..fetchAllCars(),
+        ),
+      ], child: const MyApp())));
 }
 
 class MyApp extends StatelessWidget {
