@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_cubit.dart';
 import 'package:fresh_cars/bloc/cars/cars_state.dart';
+import 'package:fresh_cars/ui/cars_screen/single_car_screen.dart';
 import 'package:fresh_cars/utils/my_utils.dart';
 
 class CarsScreenWithConsumer extends StatelessWidget {
@@ -38,17 +39,28 @@ class CarsScreenWithConsumer extends StatelessWidget {
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   var cars = state.cars[index];
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Center(
-                      child: Image.network(
-                        cars.logo,
-                        width: 100,
-                        height: 100,
+                  return InkWell(
+                    onTap: () {
+                      context
+                          .read<CarsCubit>()
+                          .fetchSingleCar(state.cars[index].id);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SingleCarScreen()));
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(16)),
+                      child: Center(
+                        child: Image.network(
+                          cars.logo,
+                          width: 100,
+                          height: 100,
+                        ),
                       ),
                     ),
                   );
