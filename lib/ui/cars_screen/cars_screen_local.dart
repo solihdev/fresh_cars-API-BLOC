@@ -47,13 +47,10 @@ class CarsScreenWithBlockProvider extends StatelessWidget {
                     var cars = state.cars[index];
                     return InkWell(
                       onTap: () {
-                        context
-                            .read<CarsCubit>()
-                            .fetchSingleCar(state.cars[index].id);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SingleCarScreen()));
+                                builder: (context) =>  SingleCarScreen(id: state.cars[index].id,)));
                       },
                       child: Container(
                         width: 120,
