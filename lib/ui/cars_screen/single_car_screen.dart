@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_bloc.dart';
 import 'package:fresh_cars/bloc/cars/cars_state.dart';
 import 'package:fresh_cars/data/repositories/cars_repo.dart';
-
 import '../../bloc/cars/cars_event.dart';
 
 class SingleCarScreen extends StatelessWidget {
@@ -20,7 +19,7 @@ class SingleCarScreen extends StatelessWidget {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Delineated text"),
+          title: const Text("Info Screen"),
         ),
         body: BlocBuilder<CarsBloc, CarsState>(
           builder: (context, state) {
@@ -35,7 +34,13 @@ class SingleCarScreen extends StatelessWidget {
             } else if (state is LoadCarInSuccess) {
               return Column(
                 children: [
-                  Text(state.car.id.toString()),
+                  Image.network(state.car.logo),
+                  Row(
+                    children: [
+                      Text("Average price: ${state.car.averagePrice}"),
+                      Text("Estableshed Year: ${state.car.estableshedYear}"),
+                    ],
+                  )
                 ],
               );
             }
